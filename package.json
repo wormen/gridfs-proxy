@@ -1,0 +1,24 @@
+{
+  "name": "gridfs-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "prepublish": "npm run build"
+  },
+  "keywords": [],
+  "author": "Oleg Bogdanov",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "fastify": "^1.12.1",
+    "gridfs-store": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^10.11.6",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.2"
+  }
+}
