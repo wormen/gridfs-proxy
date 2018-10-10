@@ -8,7 +8,12 @@
     "build": "rimraf dist && tsc",
     "prepublish": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "gridfs",
+    "mongo",
+    "mongodb",
+    "proxy"
+  ],
   "author": "Oleg Bogdanov",
   "license": "GPL-3.0",
   "dependencies": {
