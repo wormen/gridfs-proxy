@@ -1,9 +1,16 @@
 {
   "name": "gridfs-proxy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Proxy content from GridFS",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wormen/gridfs-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wormen/gridfs-proxy/issues/new"
+  },
   "scripts": {
     "build": "rimraf dist && tsc",
     "prepublish": "npm run build"
