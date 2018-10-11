@@ -11,4 +11,5 @@ export interface IOptions {
   database?: string;
   hosts?: IHost[];
   replicaSet?: string;
+  ignore?: string[]
 }
