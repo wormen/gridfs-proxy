@@ -50,7 +50,7 @@ export default class GridFsProxy extends EventEmitter {
 
         this._store.readFileStreamByPath(request.raw.originalUrl)
           .then(stream => {
-            reply.code(200).send(stream);
+            reply.send(stream);
           })
           .catch(e => {
             reply.code(404).send('');
