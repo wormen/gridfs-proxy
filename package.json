@@ -1,6 +1,6 @@
 {
   "name": "gridfs-proxy",
-  "version": "1.0.3",
+  "version": "1.0.12",
   "description": "Proxy content from GridFS",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,6 +14,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "prepublish": "npm run build",
+    "postinstall": "tsc",
     "test": "ts-node --watch --project tsconfig.json ./test.ts"
   },
   "keywords": [

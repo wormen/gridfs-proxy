@@ -4,13 +4,29 @@ import {EventEmitter} from 'events';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import {IOptions} from './interfaces';
+interface IHost {
+  host: string;
+  port: number | string;
+}
+
+interface IOptions {
+  port?: number | string;
+  host?: string;
+  checkFiles?: boolean;
+  rootFiles?: string | null;
+  database?: string;
+  hosts?: IHost[];
+  replicaSet?: string;
+  ignore?: string[]
+}
 
 const defaultOpts: IOptions = {
   port: 5000,
   checkFiles: false,
   database: 'default',
-  ignore: ['/', '/robots.txt', '/favicon.ico']
+  ignore: ['', '/', '/robots.txt', '/favicon.ico'],
+  rootFiles: __dirname,
+  replicaSet: ''
 };
 
 export default class GridFsProxy extends EventEmitter {
@@ -19,6 +35,8 @@ export default class GridFsProxy extends EventEmitter {
 
   constructor(public opts: IOptions = defaultOpts) {
     super();
+
+    this.opts = Object.assign({}, defaultOpts, this.opts);
 
     this._store = new GridFsStore({
       database: this.opts.database || defaultOpts.database,
@@ -36,12 +54,9 @@ export default class GridFsProxy extends EventEmitter {
 
     this._server = fastify();
 
-    this._server.get('/', (request, reply) => {
-      return reply.code(200).send('');
-    });
-
     this._server.get('*', async (request, reply) => {
-      if ((this.opts.ignore || defaultOpts.ignore).includes(request.raw.originalUrl)) {
+      let ignore = this.opts.ignore || defaultOpts.ignore;
+      if (request.raw.originalUrl === '/' || ignore.includes(request.raw.originalUrl)) {
         return reply.code(200).send('');
       } else {
         if (this.opts.checkFiles && this.opts.rootFiles) {
