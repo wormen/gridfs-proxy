@@ -36,6 +36,10 @@ export default class GridFsProxy extends EventEmitter {
 
     this._server = fastify();
 
+    this._server.get('/', (request, reply) => {
+      return reply.code(200).send('');
+    });
+
     this._server.get('*', async (request, reply) => {
       if ((this.opts.ignore || defaultOpts.ignore).includes(request.raw.originalUrl)) {
         return reply.code(200).send('');

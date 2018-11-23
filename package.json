@@ -1,6 +1,6 @@
 {
   "name": "gridfs-proxy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Proxy content from GridFS",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
