@@ -59,15 +59,18 @@ export default class GridFsProxy extends EventEmitter {
       if (request.raw.originalUrl === '/' || ignore.includes(request.raw.originalUrl)) {
         return reply.code(200).send('');
       } else {
+        const pathFile = String(request.raw.originalUrl).split('?')[0];
+        console.log(pathFile)
+
         if (this.opts.checkFiles && this.opts.rootFiles) {
-          let filePath = path.join(this.opts.rootFiles, request.raw.originalUrl);
+          let filePath = path.join(this.opts.rootFiles, pathFile);
           if (fs.existsSync(filePath)) {
             let stream = fs.createReadStream(filePath);
             return reply.send(stream);
           }
         }
 
-        this._store.readFileStreamByPath(request.raw.originalUrl)
+        this._store.readFileStreamByPath(pathFile)
           .then(stream => {
             reply.send(stream);
           })

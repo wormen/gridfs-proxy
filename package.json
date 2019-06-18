@@ -1,6 +1,6 @@
 {
   "name": "gridfs-proxy",
-  "version": "1.0.12",
+  "version": "1.0.18",
   "description": "Proxy content from GridFS",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,8 +14,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "prepublish": "npm run build",
-    "postinstall": "tsc",
-    "test": "ts-node --watch --project tsconfig.json ./test.ts"
+    "test": "ts-node --project tsconfig.json ./test.ts"
   },
   "keywords": [
     "gridfs",
@@ -26,13 +25,13 @@
   "author": "Oleg Bogdanov",
   "license": "GPL-3.0",
   "dependencies": {
-    "fastify": "^1.12.1",
-    "gridfs-store": "^1.0.4"
+    "rimraf": "^2.6.3",
+    "fastify": "^2.5.0",
+    "gridfs-store": "^1.0.8"
   },
   "devDependencies": {
-    "@types/node": "^10.11.6",
-    "rimraf": "^2.6.2",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.1.2"
+    "@types/node": "^12.0.8",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
   }
 }
